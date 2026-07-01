@@ -73,6 +73,26 @@ En esta fase se preparó el servidor remoto en DigitalOcean, transformándolo de
 * **Verificación:** docker compose version (Arrojó exitosamente la versión v5.2.0).
 
 
+## Fase 3: Automatización del Despliegue (CI/CD)
+
+En esta fase se implementó un robot de integración y despliegue continuo mediante **GitHub Actions**, eliminando la necesidad de interacción manual con el servidor para futuros cambios.
+
+### 1. Configuración de Seguridad (Secretos de GitHub)
+* **Acción:** Se blindaron las credenciales en `Settings > Secrets and variables > Actions`.
+* **Secretos configurados:**
+    * `SSH_PRIVATE_KEY`: Llave maestra para acceso remoto seguro.
+    * `SSH_HOST`: IP pública del servidor (`159.65.223.239`).
+    * `SSH_USER`: Usuario administrador (`root`).
+
+### 2. Estructura de Automatización (Workflow)
+* **Comando de creación:** `mkdir -p .github/workflows` y `touch .github/workflows/deploy.yml`
+* **¿Qué se hizo?:** Se definió el "cerebro" del robot mediante un archivo YAML. Este robot está programado para activarse automáticamente cada vez que se realice un `git push` a la rama `main`, clonando el repositorio y ejecutando comandos directamente en el servidor.
+
+### 3. Verificación del Pipeline
+* **Resultado:** Ejecución exitosa del primer flujo de trabajo (CI/CD Pipeline).
+* **Acción realizada:** El robot validó la conectividad SSH y ejecutó `docker compose version` dentro del servidor remoto, confirmando que la infraestructura está lista para recibir despliegues automáticos.
+
+
 
 
 
