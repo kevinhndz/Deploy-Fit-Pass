@@ -1,0 +1,24 @@
+name: Despliegue Continuo del Gimnasio (CI/CD)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar el repositorio en el servidor de GitHub
+        uses: actions/checkout@v4
+
+      - name: Conectarse al servidor por SSH y encender Docker
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            echo "¡El robot ha entrado con éxito al servidor!"
+            docker compose version
