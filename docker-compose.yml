@@ -1,0 +1,9 @@
+services:
+  app:
+    image: python:3.11-slim
+    volumes:
+      - ./src:/app
+    working_dir: /app
+    command: python app.py
+    ports:
+      - "80:80"
