@@ -93,6 +93,24 @@ En esta fase se implementó un robot de integración y despliegue continuo media
 * **Acción realizada:** El robot validó la conectividad SSH y ejecutó `docker compose version` dentro del servidor remoto, confirmando que la infraestructura está lista para recibir despliegues automáticos.
 
 
+Fase 4: Despliegue de la Aplicación y Estabilización en Producción
+
+
+1. Clonación del Repositorio en el Servidor
+Se estableció el entorno de trabajo mediante la descarga del código fuente en la ruta raíz del servidor:
+
+mkdir -p /app
+cd /app
+git clone <URL del repo> Deploy-Fit-Pass
+cd Deploy-Fit-Pass
+
+
+
+2. Despliegue en servidor:
+
+cd /app/Deploy-Fit-Pass
+docker compose up -d
+
 
 
 
