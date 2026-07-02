@@ -6,13 +6,17 @@ services:
     container_name: gimnasio_db
     restart: always
     environment:
-      
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: fitpass_db
     ports:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+   
+    deploy:
+      resources:
+        limits:
+          memory: 256M
 
 volumes:
   mysql_data:
